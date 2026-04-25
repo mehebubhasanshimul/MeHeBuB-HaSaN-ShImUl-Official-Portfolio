@@ -23,7 +23,7 @@
             scroll-behavior: smooth;
         }
 
-        /* Animated Professional Background */
+        /* Particles Animation Background */
         #particles-js {
             position: fixed;
             width: 100%;
@@ -38,43 +38,79 @@
             backdrop-filter: blur(15px);
         }
 
-        .hero-section {
-            padding: 160px 0 100px;
-            text-align: center;
+        /* --- New Glowing Text Animation --- */
+        .glowing-name {
+            font-weight: 800;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #fff, var(--neon-blue), var(--neon-purple), #fff);
+            background-size: 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: flowText 4s linear infinite;
+            text-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
         }
 
-        .profile-container {
-            position: relative;
+        @keyframes flowText {
+            0% { background-position: 0%; }
+            100% { background-position: 300%; }
+        }
+
+        /* --- Navbar Portfolio Glow --- */
+        .nav-portfolio-text {
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue);
+            font-weight: bold;
+        }
+
+        /* --- Animated Hire Me Button --- */
+        .btn-hire-animated {
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            background-size: 200% 200%;
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 20px rgba(188, 19, 254, 0.6);
+            transition: 0.4s;
+            animation: gradientBG 3s ease infinite;
+            text-decoration: none;
             display: inline-block;
         }
 
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .btn-hire-animated:hover {
+            transform: scale(1.1);
+            color: #fff;
+            box-shadow: 0 0 40px var(--neon-blue);
+        }
+
+        /* Profile & Layout */
+        .hero-section { padding: 160px 0 100px; text-align: center; }
         .profile-img {
-            width: 210px;
-            height: 210px;
-            border-radius: 50%;
-            padding: 5px;
-            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
-            box-shadow: 0 0 40px rgba(188, 19, 254, 0.5);
-            object-fit: cover;
+            width: 210px; height: 210px; border-radius: 50%;
+            padding: 5px; background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            box-shadow: 0 0 40px rgba(188, 19, 254, 0.5); object-fit: cover;
         }
 
         .section-title {
-            font-weight: 700;
-            background: linear-gradient(to right, #fff, var(--neon-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 50px;
-            text-transform: uppercase;
+            font-weight: 700; color: #fff;
+            text-shadow: 0 0 10px var(--neon-blue);
+            margin-bottom: 50px; text-transform: uppercase;
         }
 
-        /* Project Cards Styling */
         .project-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            height: 100%;
+            border-radius: 15px; overflow: hidden;
+            transition: 0.4s; height: 100%;
         }
 
         .project-card:hover {
@@ -83,58 +119,16 @@
             box-shadow: 0 10px 30px rgba(0, 242, 255, 0.2);
         }
 
-        .project-img {
-            height: 200px;
-            width: 100%;
-            object-fit: cover;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
+        .project-img { height: 200px; width: 100%; object-fit: cover; }
+        .en-text { color: var(--neon-blue); font-weight: 600; }
 
-        .lang-text {
-            font-size: 0.85rem;
-            line-height: 1.4;
-        }
-
-        .bn-text { color: #adb5bd; }
-        .en-text { color: var(--neon-blue); font-weight: 500; }
-
-        /* Contact Section */
         .contact-icon-img {
-            width: 55px;
-            height: 55px;
-            border-radius: 12px;
-            transition: 0.4s;
-            background: white;
-            padding: 5px;
+            width: 55px; height: 55px; border-radius: 12px;
+            transition: 0.4s; background: white; padding: 5px;
         }
+        .contact-icon-img:hover { transform: scale(1.2) rotate(8deg); box-shadow: 0 0 20px var(--neon-blue); }
 
-        .contact-icon-img:hover {
-            transform: scale(1.2) rotate(10deg);
-            box-shadow: 0 0 20px var(--neon-blue);
-        }
-
-        .btn-neon {
-            border: 2px solid var(--neon-blue);
-            color: var(--neon-blue);
-            padding: 12px 35px;
-            border-radius: 50px;
-            text-transform: uppercase;
-            font-weight: bold;
-            transition: 0.3s;
-            text-decoration: none;
-        }
-
-        .btn-neon:hover {
-            background: var(--neon-blue);
-            color: #000;
-            box-shadow: 0 0 20px var(--neon-blue);
-        }
-
-        footer {
-            padding: 40px 0;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            background: rgba(0,0,0,0.5);
-        }
+        footer { padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.5); }
     </style>
 </head>
 <body>
@@ -143,56 +137,56 @@
 
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="#">SHIMUL<span style="color:var(--neon-blue)">Portfolio</span></a>
+            <a class="navbar-brand fw-bold text-white" href="#">SHIMUL <span class="nav-portfolio-text">Portfolio</span></a>
             <div class="ms-auto">
-                <a href="#contact" class="btn-neon btn-sm">Hire Me Now</a>
+                <a href="#contact" class="btn-hire-animated" style="padding: 8px 20px; font-size: 14px;">Hire Me Now</a>
             </div>
         </div>
     </nav>
 
     <section class="hero-section">
         <div class="container">
-            <div class="profile-container mb-4">
+            <div class="mb-4">
                 <img src="https://i.postimg.cc/vH6WRPmp/IMG-20260426-001903.png" alt="Shimul" class="profile-img">
             </div>
-            <h1 class="display-3 fw-bold">MeHeBuB HaSaN ShImUl</h1>
-            <p class="h4 mb-4" style="color: var(--neon-blue)">Full-Stack Developer & Freelance Expert</p>
-            <p class="lead text-secondary mx-auto" style="max-width: 700px;">
+            <h1 class="display-3 glowing-name">MeHeBuB HaSaN ShImUl</h1>
+            <p class="h4 mb-4" style="color: var(--neon-blue); letter-spacing: 2px;">Full-Stack Developer & Freelance Expert</p>
+            <p class="lead text-secondary mx-auto mb-4" style="max-width: 700px;">
                 I build high-end digital solutions, from complex web systems to mobile applications. 
                 <br>আমি দিচ্ছি ওয়েবসাইট তৈরি, ডিজাইন এবং অ্যাপ ডেভেলপমেন্টের সেরা প্রফেশনাল সার্ভিস।
             </p>
+            <a href="#contact" class="btn-hire-animated">Hire Me Now</a>
         </div>
     </section>
 
     <section id="projects" class="py-5">
         <div class="container">
-            <h2 class="text-center section-title">My Expertise & Projects (১২টি কাজের বিস্তারিত)</h2>
+            <h2 class="text-center section-title">My Expertise & Projects</h2>
             <div class="row g-4">
-                
                 <script>
                     const projects = [
-                        { t: "Website Development", bn: "সম্পূর্ণ নতুন ওয়েবসাইট তৈরি ও কোডিং।", en: "Full website creation from scratch using modern code.", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&q=80" },
-                        { t: "Mobile App Build", bn: "অ্যান্ড্রয়েড ও আইওএস অ্যাপ তৈরি।", en: "Professional Android & iOS mobile app development.", img: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=500&q=80" },
-                        { t: "UI/UX Design", bn: "আধুনিক ও ইউজার ফ্রেন্ডলি ইন্টারফেস ডিজাইন।", en: "Modern, clean and user-friendly interface design.", img: "https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?w=500&q=80" },
-                        { t: "E-Commerce Solution", bn: "অনলাইন শপ বা কেনাকাটার পূর্ণাঙ্গ ওয়েবসাইট।", en: "Complete online shop and multi-vendor solutions.", img: "https://images.unsplash.com/photo-1557821552-17105176677c?w=500&q=80" },
-                        { t: "Portfolio Website", bn: "ব্যক্তিগত বা বিজনেস পোর্টফোলিও তৈরি।", en: "Personal and business showcase portfolios.", img: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=500&q=80" },
-                        { t: "LMS / Education", bn: "অনলাইন কোর্স এবং শিক্ষা প্রতিষ্ঠানের ওয়েবসাইট।", en: "Learning Management Systems and school websites.", img: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=500&q=80" },
-                        { t: "Software Design", bn: "কাস্টম ম্যানেজমেন্ট সফটওয়্যার তৈরি।", en: "Custom inventory and management software build.", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&q=80" },
-                        { t: "API Integration", bn: "থার্ড পার্টি এপিআই এবং পেমেন্ট গেটওয়ে।", en: "Third-party API and secure payment integration.", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?w=500&q=80" },
-                        { t: "SEO Optimization", bn: "গুগল র‍্যাঙ্কিং এবং সার্চ ইঞ্জিন অপ্টিমাইজেশন।", en: "Google ranking and on-page SEO services.", img: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=500&q=80" },
-                        { t: "Landing Page", bn: "হাই কনভার্টিং ল্যান্ডিং পেজ ডিজাইন।", en: "High-converting sales landing page design.", img: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=500&q=80" },
-                        { t: "Graphics Branding", bn: "ডিজিটাল ব্র্যান্ডিং এবং লোগো ডিজাইন।", en: "Digital branding and professional logo assets.", img: "https://images.unsplash.com/photo-1572044162444-ad60f128bde2?w=500&q=80" },
-                        { t: "Cloud Hosting", bn: "সার্ভার কনফিগারেশন ও ক্লাউড হোস্টিং।", en: "Server setup and cloud hosting deployment.", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500&q=80" }
+                        { t: "Website Development", bn: "সম্পূর্ণ নতুন ওয়েবসাইট তৈরি ও কোডিং।", en: "Modern code-based website creation.", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&q=80" },
+                        { t: "Mobile App Build", bn: "অ্যান্ড্রয়েড ও আইওএস অ্যাপ তৈরি।", en: "Professional Android & iOS development.", img: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=500&q=80" },
+                        { t: "UI/UX Design", bn: "আধুনিক ইন্টারফেস ডিজাইন।", en: "Modern, clean user-friendly design.", img: "https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?w=500&q=80" },
+                        { t: "E-Commerce Solution", bn: "অনলাইন শপ পূর্ণাঙ্গ ওয়েবসাইট।", en: "Complete online shopping solutions.", img: "https://images.unsplash.com/photo-1557821552-17105176677c?w=500&q=80" },
+                        { t: "Portfolio Website", bn: "ব্যক্তিগত পোর্টফোলিও তৈরি।", en: "Personal showcase portfolios.", img: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=500&q=80" },
+                        { t: "LMS / Education", bn: "অনলাইন কোর্স ওয়েবসাইট।", en: "Learning Management Systems.", img: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=500&q=80" },
+                        { t: "Software Design", bn: "কাস্টম সফটওয়্যার তৈরি।", en: "Custom inventory software build.", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&q=80" },
+                        { t: "API Integration", bn: "থার্ড পার্টি এপিআই গেটওয়ে।", en: "Secure API & payment integration.", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?w=500&q=80" },
+                        { t: "SEO Optimization", bn: "গুগল র‍্যাঙ্কিং এসইও।", en: "Professional on-page SEO services.", img: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=500&q=80" },
+                        { t: "Landing Page", bn: "সেলস ল্যান্ডিং পেজ ডিজাইন।", en: "High-converting landing pages.", img: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=500&q=80" },
+                        { t: "Graphics Branding", bn: "ডিজিটাল ব্র্যান্ডিং ও লোগো।", en: "Professional branding assets.", img: "https://images.unsplash.com/photo-1572044162444-ad60f128bde2?w=500&q=80" },
+                        { t: "Cloud Hosting", bn: "সার্ভার ও ক্লাউড হোস্টিং।", en: "Cloud hosting deployment.", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500&q=80" }
                     ];
 
                     projects.forEach(p => {
                         document.write(`
                         <div class="col-lg-3 col-md-6">
                             <div class="project-card">
-                                <img src="${p.img}" class="project-img" alt="Project">
+                                <img src="${p.img}" class="project-img" alt="Work">
                                 <div class="p-3">
                                     <h6 class="en-text mb-2">${p.t}</h6>
-                                    <p class="bn-text lang-text mb-1">${p.bn}</p>
+                                    <p class="text-secondary small mb-1">${p.bn}</p>
                                     <p class="text-muted small mb-0 italic">${p.en}</p>
                                 </div>
                             </div>
@@ -208,31 +202,25 @@
         <div class="container text-center">
             <h2 class="section-title">Let's Work Together</h2>
             <div class="p-4 rounded-4" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1);">
-                <p class="mb-5 text-secondary">প্রজেক্ট নিয়ে আলোচনার জন্য সরাসরি যোগাযোগ করুন নিচের মাধ্যমে:</p>
-                <div class="d-flex flex-wrap justify-content-center gap-5">
-                    
+                <div class="d-flex flex-wrap justify-content-center gap-5 mt-4">
                     <a href="https://www.facebook.com/shimul.khan.5494" target="_blank" class="text-decoration-none text-light">
                         <img src="https://i.postimg.cc/nLdkVXf5/IMG-20260329-120119.png" class="contact-icon-img mb-2" alt="FB">
                         <br><b>Facebook</b>
                     </a>
-
                     <a href="https://www.linkedin.com/in/m͢e͢h͢e͢b͢u͢b-hαѕѕαn-ѕhímul-34936317a" target="_blank" class="text-decoration-none text-light">
                         <img src="https://i.postimg.cc/0rgK2sNV/IMG-20260426-001624.jpg" class="contact-icon-img mb-2" alt="LinkedIn">
                         <br><b>LinkedIn</b>
                     </a>
-
                     <a href="mailto:shimulprinters82@gmail.com" class="text-decoration-none text-light">
                         <img src="https://i.postimg.cc/TPHVMBrh/1760449204730.png" class="contact-icon-img mb-2" alt="Gmail">
-                        <br><b>Email Me</b>
+                        <br><b>Email</b>
                     </a>
-
                     <a href="https://wa.me/8801859877524" target="_blank" class="text-decoration-none text-light">
                         <div class="contact-icon-img d-flex align-items-center justify-content-center mb-2" style="background:#25D366">
                             <i class="fab fa-whatsapp text-white fs-2"></i>
                         </div>
                         <b>WhatsApp</b>
                     </a>
-
                 </div>
             </div>
         </div>
@@ -241,7 +229,6 @@
     <footer>
         <div class="container text-center">
             <p class="mb-0">© 2026 <span style="color:var(--neon-blue)">MeHeBuB HaSaN ShImUl</span> | Official Portfolio</p>
-            <small class="text-muted">Innovating the Digital Future through Quality Code</small>
         </div>
     </footer>
 
@@ -250,18 +237,14 @@
     <script>
         particlesJS("particles-js", {
             "particles": {
-                "number": { "value": 100, "density": { "enable": true, "value_area": 800 } },
+                "number": { "value": 80 },
                 "color": { "value": "#00f2ff" },
-                "shape": { "type": "circle" },
-                "opacity": { "value": 0.3, "random": true },
-                "size": { "value": 2, "random": true },
-                "line_linked": { "enable": true, "distance": 150, "color": "#bc13fe", "opacity": 0.2, "width": 1 },
-                "move": { "enable": true, "speed": 1.5, "direction": "none", "random": true }
-            },
-            "interactivity": {
-                "events": { "onhover": { "enable": true, "mode": "repulse" } }
+                "opacity": { "value": 0.3 },
+                "size": { "value": 2 },
+                "line_linked": { "enable": true, "distance": 150, "color": "#bc13fe", "opacity": 0.2 },
+                "move": { "enable": true, "speed": 2 }
             }
         });
     </script>
 </body>
-  </html>
+</html>
