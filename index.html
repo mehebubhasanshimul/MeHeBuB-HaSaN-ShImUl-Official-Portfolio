@@ -14,15 +14,13 @@
             --neon-blue: #00f2ff;
             --neon-purple: #bc13fe;
             --neon-pink: #ff00aa;
+            --neon-green: #00ff88;
             --dark-deep: #030014;
             --glass: rgba(255, 255, 255, 0.04);
+            --glass-border: rgba(255, 255, 255, 0.08);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Poppins', 'Hind Siliguri', sans-serif;
@@ -34,48 +32,41 @@
 
         /* Custom Cursor */
         .cursor {
-            width: 20px;
-            height: 20px;
+            width: 20px; height: 20px;
             border: 2px solid var(--neon-blue);
             border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
+            position: fixed; pointer-events: none;
             z-index: 9999;
-            transition: transform 0.15s ease, background 0.3s;
+            transition: transform 0.15s ease, background 0.3s, border-color 0.3s;
             mix-blend-mode: difference;
         }
         .cursor-follower {
-            width: 8px;
-            height: 8px;
+            width: 8px; height: 8px;
             background: var(--neon-purple);
             border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
+            position: fixed; pointer-events: none;
             z-index: 9999;
             transition: transform 0.08s ease;
         }
 
         /* Particles */
         #particles-js {
-            position: fixed;
-            width: 100%;
-            height: 100%;
+            position: fixed; width: 100%; height: 100%;
             z-index: -2;
             background: radial-gradient(ellipse at center, #0a0a1f 0%, #030014 70%);
         }
 
         /* Floating Orbs */
         .orb {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.35;
+            position: fixed; border-radius: 50%;
+            filter: blur(80px); opacity: 0.35;
             z-index: -1;
             animation: floatOrb 20s infinite ease-in-out;
         }
         .orb-1 { width: 400px; height: 400px; background: var(--neon-purple); top: -100px; left: -100px; }
         .orb-2 { width: 300px; height: 300px; background: var(--neon-blue); bottom: -50px; right: -50px; animation-delay: -7s; }
         .orb-3 { width: 250px; height: 250px; background: var(--neon-pink); top: 40%; left: 60%; animation-delay: -14s; }
+        .orb-4 { width: 200px; height: 200px; background: var(--neon-green); top: 70%; left: 10%; animation-delay: -5s; opacity: 0.2; }
 
         @keyframes floatOrb {
             0%, 100% { transform: translate(0, 0) scale(1); }
@@ -97,9 +88,7 @@
         }
         .navbar-brand {
             font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            letter-spacing: 2px;
-            font-size: 1.4rem;
+            font-weight: 700; letter-spacing: 2px; font-size: 1.4rem;
         }
         .nav-portfolio-text {
             background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
@@ -108,7 +97,7 @@
             animation: glowPulse 2s infinite alternate;
         }
 
-        /* Glowing Name - Advanced */
+        /* Glowing Name */
         .glowing-name {
             font-family: 'Orbitron', sans-serif;
             font-weight: 900;
@@ -122,7 +111,6 @@
             letter-spacing: 3px;
             position: relative;
         }
-
         @keyframes flowText {
             0% { background-position: 0%; }
             100% { background-position: 400%; }
@@ -135,45 +123,30 @@
         /* Typing Effect */
         .typing-text {
             border-right: 3px solid var(--neon-blue);
-            white-space: nowrap;
-            overflow: hidden;
+            white-space: nowrap; overflow: hidden;
             animation: typing 3.5s steps(40, end), blink 0.75s step-end infinite;
         }
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-        @keyframes blink {
-            from, to { border-color: transparent; }
-            50% { border-color: var(--neon-blue); }
-        }
+        @keyframes typing { from { width: 0; } to { width: 100%; } }
+        @keyframes blink { from, to { border-color: transparent; } 50% { border-color: var(--neon-blue); } }
 
-        /* Hire Button - Premium */
+        /* Hire Button */
         .btn-hire {
             position: relative;
             background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
             background-size: 200% 200%;
-            color: #fff;
-            border: none;
-            padding: 14px 36px;
-            border-radius: 50px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            overflow: hidden;
-            z-index: 1;
+            color: #fff; border: none;
+            padding: 14px 36px; border-radius: 50px;
+            font-weight: 700; text-transform: uppercase; letter-spacing: 2px;
+            overflow: hidden; z-index: 1;
             transition: all 0.4s;
             box-shadow: 0 0 25px rgba(188, 19, 254, 0.5);
             animation: gradientMove 4s ease infinite;
         }
         .btn-hire::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
+            content: ''; position: absolute;
+            top: 0; left: -100%; width: 100%; height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: 0.5s;
-            z-index: -1;
+            transition: 0.5s; z-index: -1;
         }
         .btn-hire:hover::before { left: 100%; }
         .btn-hire:hover {
@@ -188,15 +161,10 @@
         }
 
         /* Profile Image */
-        .profile-wrapper {
-            position: relative;
-            display: inline-block;
-        }
+        .profile-wrapper { position: relative; display: inline-block; }
         .profile-img {
-            width: 230px;
-            height: 230px;
-            border-radius: 50%;
-            object-fit: cover;
+            width: 230px; height: 230px;
+            border-radius: 50%; object-fit: cover;
             border: 4px solid transparent;
             background: linear-gradient(var(--dark-deep), var(--dark-deep)) padding-box,
                         linear-gradient(135deg, var(--neon-blue), var(--neon-purple), var(--neon-pink)) border-box;
@@ -223,27 +191,19 @@
             0%, 100% { box-shadow: 0 0 40px rgba(188,19,254,0.5); }
             50% { box-shadow: 0 0 70px rgba(0,242,255,0.7), 0 0 100px rgba(188,19,254,0.4); }
         }
-        @keyframes rotateRing {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
+        @keyframes rotateRing { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
         /* Section Titles */
         .section-title {
             font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            color: #fff;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            position: relative;
-            display: inline-block;
+            font-weight: 700; color: #fff;
+            text-transform: uppercase; letter-spacing: 3px;
+            position: relative; display: inline-block;
             margin-bottom: 60px;
         }
         .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -12px; left: 50%;
-            transform: translateX(-50%);
+            content: ''; position: absolute;
+            bottom: -12px; left: 50%; transform: translateX(-50%);
             width: 80px; height: 4px;
             background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
             border-radius: 2px;
@@ -253,7 +213,7 @@
         /* Stats Counter */
         .stat-box {
             background: var(--glass);
-            border: 1px solid rgba(255,255,255,0.08);
+            border: 1px solid var(--glass-border);
             border-radius: 20px;
             padding: 30px 20px;
             text-align: center;
@@ -267,31 +227,26 @@
         }
         .stat-number {
             font-family: 'Orbitron', sans-serif;
-            font-size: 2.8rem;
-            font-weight: 700;
+            font-size: 2.8rem; font-weight: 700;
             background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        /* Project Cards - 3D Hover */
+        /* Project Cards */
         .project-card {
             background: var(--glass);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 20px;
-            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            border-radius: 20px; overflow: hidden;
             height: 100%;
             transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
             backdrop-filter: blur(12px);
             position: relative;
         }
         .project-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
+            content: ''; position: absolute; inset: 0;
             background: linear-gradient(135deg, transparent, rgba(0,242,255,0.1), transparent);
-            opacity: 0;
-            transition: 0.5s;
+            opacity: 0; transition: 0.5s; pointer-events: none;
         }
         .project-card:hover::before { opacity: 1; }
         .project-card:hover {
@@ -300,34 +255,20 @@
             box-shadow: 0 20px 50px rgba(0, 242, 255, 0.25);
         }
         .project-img {
-            height: 190px;
-            width: 100%;
-            object-fit: cover;
-            transition: transform 0.6s;
+            height: 190px; width: 100%;
+            object-fit: cover; transition: transform 0.6s;
         }
-        .project-card:hover .project-img {
-            transform: scale(1.1);
-        }
-        .en-text {
-            color: var(--neon-blue);
-            font-weight: 600;
-            font-size: 1.05rem;
-        }
+        .project-card:hover .project-img { transform: scale(1.1); }
+        .en-text { color: var(--neon-blue); font-weight: 600; font-size: 1.05rem; }
 
         /* Skills Progress */
-        .skill-item {
-            margin-bottom: 25px;
-        }
+        .skill-item { margin-bottom: 25px; }
         .skill-bar {
-            height: 8px;
-            background: rgba(255,255,255,0.08);
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
+            height: 8px; background: rgba(255,255,255,0.08);
+            border-radius: 10px; overflow: hidden; position: relative;
         }
         .skill-progress {
-            height: 100%;
-            border-radius: 10px;
+            height: 100%; border-radius: 10px;
             background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
             width: 0;
             transition: width 1.8s cubic-bezier(0.23, 1, 0.32, 1);
@@ -338,12 +279,9 @@
         .contact-box {
             background: var(--glass);
             border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 20px;
-            padding: 25px 20px;
-            transition: all 0.4s;
-            text-decoration: none;
-            color: #e0e0e0;
-            display: block;
+            border-radius: 20px; padding: 25px 20px;
+            transition: all 0.4s; text-decoration: none;
+            color: #e0e0e0; display: block;
         }
         .contact-box:hover {
             transform: translateY(-12px) scale(1.05);
@@ -352,13 +290,9 @@
             color: #fff;
         }
         .contact-icon-img {
-            width: 60px;
-            height: 60px;
-            border-radius: 16px;
-            object-fit: cover;
-            transition: 0.4s;
-            background: #fff;
-            padding: 6px;
+            width: 60px; height: 60px;
+            border-radius: 16px; object-fit: cover;
+            transition: 0.4s; background: #fff; padding: 6px;
         }
         .contact-box:hover .contact-icon-img {
             transform: scale(1.15) rotate(8deg);
@@ -375,22 +309,17 @@
 
         /* Scroll Progress */
         .scroll-progress {
-            position: fixed;
-            top: 0; left: 0;
+            position: fixed; top: 0; left: 0;
             height: 3px;
-            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
-            width: 0%;
-            z-index: 9998;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+            width: 0%; z-index: 9998;
             box-shadow: 0 0 10px var(--neon-blue);
         }
 
         /* Floating Hire Button (Mobile) */
         .floating-hire {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 1000;
-            display: none;
+            position: fixed; bottom: 30px; right: 30px;
+            z-index: 1000; display: none;
         }
         @media (max-width: 768px) {
             .floating-hire { display: block; }
@@ -398,10 +327,8 @@
             .profile-ring, .profile-ring-2 { display: none; }
         }
 
-        /* Glitch Effect on Hover Name */
-        .glitch:hover {
-            animation: glitch 0.3s infinite;
-        }
+        /* Glitch Effect */
+        .glitch:hover { animation: glitch 0.3s infinite; }
         @keyframes glitch {
             0% { text-shadow: 2px 0 var(--neon-blue), -2px 0 var(--neon-pink); }
             25% { text-shadow: -2px 0 var(--neon-blue), 2px 0 var(--neon-pink); }
@@ -409,22 +336,133 @@
             75% { text-shadow: -2px 2px var(--neon-blue), 2px -2px var(--neon-pink); }
             100% { text-shadow: 2px 0 var(--neon-blue), -2px 0 var(--neon-pink); }
         }
+
+        /* Marquee */
+        .marquee-container {
+            overflow: hidden; white-space: nowrap;
+            background: linear-gradient(90deg, transparent, rgba(188,19,254,0.1), transparent);
+            border-top: 1px solid rgba(188,19,254,0.2);
+            border-bottom: 1px solid rgba(188,19,254,0.2);
+            padding: 12px 0; margin: 30px 0;
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+        .marquee-content span {
+            display: inline-block; padding: 0 30px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.95rem; letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(0, 242, 255, 0.6);
+        }
+        .marquee-content span i { color: var(--neon-purple); margin-right: 8px; }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Animated Gradient Text */
+        .animated-gradient-text {
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple), var(--neon-pink), var(--neon-blue));
+            background-size: 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 4s linear infinite;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0%; }
+            100% { background-position: 300%; }
+        }
+
+        /* Tilt Effect */
+        .tilt-card { transform-style: preserve-3d; perspective: 1000px; }
+        .tilt-inner { transition: transform 0.3s ease; }
+        .project-card:hover .tilt-inner { transform: rotateX(5deg) rotateY(-5deg); }
+
+        /* Hover Underline */
+        .hover-underline { position: relative; display: inline-block; }
+        .hover-underline::after {
+            content: ''; position: absolute;
+            bottom: -5px; left: 0; width: 0; height: 2px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+            transition: width 0.4s ease;
+        }
+        .hover-underline:hover::after { width: 100%; }
+
+        /* Neon Card Border */
+        .neon-card { position: relative; }
+        .neon-card::after {
+            content: ''; position: absolute;
+            inset: -2px; border-radius: 22px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple), var(--neon-pink), var(--neon-green));
+            background-size: 400%; z-index: -1;
+            opacity: 0; transition: opacity 0.4s;
+            animation: gradientShift 3s linear infinite;
+        }
+        .neon-card:hover::after { opacity: 1; }
+
+        /* Typewriter Title */
+        .typewriter-title {
+            overflow: hidden; white-space: nowrap;
+            border-right: 3px solid var(--neon-blue);
+            animation: typewriter 2s steps(30) 1s forwards, blinkCursor 0.8s step-end infinite;
+            width: 0;
+        }
+        @keyframes typewriter { to { width: 100%; } }
+        @keyframes blinkCursor {
+            from, to { border-color: transparent; }
+            50% { border-color: var(--neon-blue); }
+        }
+
+        /* Staggered Fade In */
+        @keyframes staggerFadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Neon Glow Text */
+        .neon-glow-text {
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px rgba(0,242,255,0.5), 0 0 20px rgba(0,242,255,0.3), 0 0 40px rgba(0,242,255,0.1);
+            animation: neonTextPulse 2s ease-in-out infinite alternate;
+        }
+        @keyframes neonTextPulse {
+            from { text-shadow: 0 0 10px rgba(0,242,255,0.5), 0 0 20px rgba(0,242,255,0.3); }
+            to { text-shadow: 0 0 20px rgba(0,242,255,0.8), 0 0 40px rgba(0,242,255,0.5), 0 0 60px rgba(188,19,254,0.3); }
+        }
+
+        /* Scroll Down Indicator */
+        .scroll-down {
+            display: inline-block;
+            animation: bounceDown 2s infinite;
+            color: var(--neon-blue);
+            font-size: 1.5rem; margin-top: 20px;
+        }
+        @keyframes bounceDown {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(10px); }
+            60% { transform: translateY(5px); }
+        }
+
+        /* Hover Glow */
+        .hover-glow:hover {
+            color: var(--neon-blue) !important;
+            text-shadow: 0 0 15px rgba(0,242,255,0.8);
+        }
     </style>
 </head>
 <body>
 
-    <!-- Custom Cursor -->
     <div class="cursor" id="cursor"></div>
     <div class="cursor-follower" id="cursorFollower"></div>
-
-    <!-- Scroll Progress -->
     <div class="scroll-progress" id="scrollProgress"></div>
 
-    <!-- Background Effects -->
     <div id="particles-js"></div>
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg sticky-top" id="navbar">
@@ -438,7 +476,7 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="hero-section py-5" style="padding-top: 140px !important;">
         <div class="container text-center">
             <div class="mb-4" data-aos="zoom-in" data-aos-duration="1000">
@@ -450,47 +488,69 @@
             </div>
 
             <h1 class="glowing-name glitch mb-3" data-aos="fade-up">MeHeBuB HaSaN ShImUl</h1>
-            
-            <p class="h4 mb-3" style="color: var(--neon-blue); letter-spacing: 3px; font-weight: 500;" data-aos="fade-up" data-aos-delay="100">
+
+            <p class="h4 mb-3 animated-gradient-text" style="letter-spacing: 3px; font-weight: 600;" data-aos="fade-up" data-aos-delay="100">
                 <span id="typed-text"></span>
             </p>
 
             <p class="lead text-secondary mx-auto mb-4" style="max-width: 720px;" data-aos="fade-up" data-aos-delay="200">
                 I craft high-end digital experiences — from complex full-stack systems to stunning mobile apps.<br>
-                <span style="color: #aaa;">আমি দিচ্ছি ওয়েবসাইট তৈরি, ডিজাইন এবং অ্যাপ ডেভেলপমেন্টের সেরা প্রফেশনাল সার্ভিস।</span>
+                <span style="color: #aaa;">আমি দিচ্ছি ওয়েবসাইট তৈরি, ডিজাইন এবং অ্যাপ ডেভেলপমেন্টের সেরা প্রফেশনাল সার্ভিস।</span>
             </p>
 
             <div data-aos="fade-up" data-aos-delay="300">
                 <a href="#contact" class="btn-hire me-3">Hire Me Now</a>
-                <a href="#projects" class="btn btn-outline-light rounded-pill px-4 py-2" style="border-color: var(--neon-blue); color: var(--neon-blue);">View Projects</a>
+                <a href="#projects" class="btn btn-outline-light rounded-pill px-4 py-2 hover-glow" style="border-color: var(--neon-blue); color: var(--neon-blue); transition: all 0.3s;">View Projects</a>
+            </div>
+
+            <div data-aos="fade-up" data-aos-delay="500">
+                <a href="#stats" class="scroll-down"><i class="fas fa-chevron-down"></i></a>
             </div>
         </div>
     </section>
 
-    <!-- Live Stats -->
-    <section class="py-5">
+    <!-- Marquee -->
+    <div class="marquee-container" data-aos="fade-up">
+        <div class="marquee-content">
+            <span><i class="fas fa-code"></i> Full-Stack Development</span>
+            <span><i class="fas fa-mobile-alt"></i> Mobile App Development</span>
+            <span><i class="fas fa-paint-brush"></i> UI/UX Design</span>
+            <span><i class="fas fa-shopping-cart"></i> E-Commerce Solutions</span>
+            <span><i class="fas fa-search"></i> SEO Optimization</span>
+            <span><i class="fas fa-cloud"></i> Cloud Hosting</span>
+            <span><i class="fas fa-code"></i> Full-Stack Development</span>
+            <span><i class="fas fa-mobile-alt"></i> Mobile App Development</span>
+            <span><i class="fas fa-paint-brush"></i> UI/UX Design</span>
+            <span><i class="fas fa-shopping-cart"></i> E-Commerce Solutions</span>
+            <span><i class="fas fa-search"></i> SEO Optimization</span>
+            <span><i class="fas fa-cloud"></i> Cloud Hosting</span>
+        </div>
+    </div>
+
+    <!-- Stats -->
+    <section class="py-5" id="stats">
         <div class="container">
             <div class="row g-4 justify-content-center">
                 <div class="col-6 col-md-3" data-aos="fade-up">
-                    <div class="stat-box">
+                    <div class="stat-box neon-card">
                         <div class="stat-number" data-target="120">0</div>
                         <p class="mb-0 text-secondary small">Projects Done</p>
                     </div>
                 </div>
                 <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="100">
-                    <div class="stat-box">
+                    <div class="stat-box neon-card">
                         <div class="stat-number" data-target="85">0</div>
                         <p class="mb-0 text-secondary small">Happy Clients</p>
                     </div>
                 </div>
                 <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="200">
-                    <div class="stat-box">
+                    <div class="stat-box neon-card">
                         <div class="stat-number" data-target="6">0</div>
                         <p class="mb-0 text-secondary small">Years Experience</p>
                     </div>
                 </div>
                 <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="300">
-                    <div class="stat-box">
+                    <div class="stat-box neon-card">
                         <div class="stat-number" data-target="24">0</div>
                         <p class="mb-0 text-secondary small">Awards Won</p>
                     </div>
@@ -502,7 +562,7 @@
     <!-- Projects -->
     <section id="projects" class="py-5">
         <div class="container">
-            <h2 class="text-center section-title" data-aos="fade-up">My Expertise & Projects</h2>
+            <h2 class="text-center section-title typewriter-title" data-aos="fade-up">My Expertise & Projects</h2>
             <div class="row g-4" id="projectGrid"></div>
         </div>
     </section>
@@ -510,41 +570,41 @@
     <!-- Skills -->
     <section class="py-5">
         <div class="container">
-            <h2 class="text-center section-title" data-aos="fade-up">Technical Skills</h2>
+            <h2 class="text-center section-title typewriter-title" data-aos="fade-up">Technical Skills</h2>
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="skill-item" data-aos="fade-right">
                         <div class="d-flex justify-content-between mb-1">
-                            <span>Full-Stack Development</span>
-                            <span>95%</span>
+                            <span class="hover-underline">Full-Stack Development</span>
+                            <span class="neon-glow-text">95%</span>
                         </div>
                         <div class="skill-bar"><div class="skill-progress" data-width="95%"></div></div>
                     </div>
                     <div class="skill-item" data-aos="fade-right" data-aos-delay="100">
                         <div class="d-flex justify-content-between mb-1">
-                            <span>Mobile App (Android / iOS)</span>
-                            <span>90%</span>
+                            <span class="hover-underline">Mobile App (Android / iOS)</span>
+                            <span class="neon-glow-text">90%</span>
                         </div>
                         <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
                     </div>
                     <div class="skill-item" data-aos="fade-right" data-aos-delay="200">
                         <div class="d-flex justify-content-between mb-1">
-                            <span>UI / UX Design</span>
-                            <span>92%</span>
+                            <span class="hover-underline">UI / UX Design</span>
+                            <span class="neon-glow-text">92%</span>
                         </div>
                         <div class="skill-bar"><div class="skill-progress" data-width="92%"></div></div>
                     </div>
                     <div class="skill-item" data-aos="fade-right" data-aos-delay="300">
                         <div class="d-flex justify-content-between mb-1">
-                            <span>E-Commerce & Payment Gateway</span>
-                            <span>88%</span>
+                            <span class="hover-underline">E-Commerce & Payment Gateway</span>
+                            <span class="neon-glow-text">88%</span>
                         </div>
                         <div class="skill-bar"><div class="skill-progress" data-width="88%"></div></div>
                     </div>
                     <div class="skill-item" data-aos="fade-right" data-aos-delay="400">
                         <div class="d-flex justify-content-between mb-1">
-                            <span>SEO & Performance</span>
-                            <span>85%</span>
+                            <span class="hover-underline">SEO & Performance</span>
+                            <span class="neon-glow-text">85%</span>
                         </div>
                         <div class="skill-bar"><div class="skill-progress" data-width="85%"></div></div>
                     </div>
@@ -556,30 +616,30 @@
     <!-- Contact -->
     <section id="contact" class="py-5">
         <div class="container text-center">
-            <h2 class="section-title" data-aos="fade-up">Let's Work Together</h2>
+            <h2 class="section-title typewriter-title" data-aos="fade-up">Let's Work Together</h2>
             <p class="text-secondary mb-5" data-aos="fade-up">Ready to turn your idea into reality? Reach out now.</p>
 
             <div class="row g-4 justify-content-center">
                 <div class="col-6 col-md-3" data-aos="zoom-in">
-                    <a href="https://www.facebook.com/shimul.khan.5494" target="_blank" class="contact-box">
+                    <a href="https://www.facebook.com/shimul.khan.5494" target="_blank" class="contact-box neon-card">
                         <img src="https://i.postimg.cc/nLdkVXf5/IMG-20260329-120119.png" class="contact-icon-img mb-3" alt="Facebook">
                         <h6 class="mb-0">Facebook</h6>
                     </a>
                 </div>
                 <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="100">
-                    <a href="https://www.linkedin.com/in/m͢e͢h͢e͢b͢u͢b-hαѕѕαn-ѕhímul-34936317a" target="_blank" class="contact-box">
+                    <a href="https://www.linkedin.com/in/m͢e͢h͢e͢b͢u͢b-hαѕѕαn-ѕhímul-34936317a" target="_blank" class="contact-box neon-card">
                         <img src="https://i.postimg.cc/0rgK2sNV/IMG-20260426-001624.jpg" class="contact-icon-img mb-3" alt="LinkedIn">
                         <h6 class="mb-0">LinkedIn</h6>
                     </a>
                 </div>
                 <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="200">
-                    <a href="mailto:shimulprinters82@gmail.com" class="contact-box">
+                    <a href="mailto:shimulprinters82@gmail.com" class="contact-box neon-card">
                         <img src="https://i.postimg.cc/TPHVMBrh/1760449204730.png" class="contact-icon-img mb-3" alt="Email">
                         <h6 class="mb-0">Email</h6>
                     </a>
                 </div>
                 <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="300">
-                    <a href="https://wa.me/8801859877524" target="_blank" class="contact-box">
+                    <a href="https://wa.me/8801859877524" target="_blank" class="contact-box neon-card">
                         <div class="contact-icon-img d-flex align-items-center justify-content-center mb-3 mx-auto" style="background:#25D366;">
                             <i class="fab fa-whatsapp text-white fs-2"></i>
                         </div>
@@ -598,7 +658,7 @@
         </div>
     </footer>
 
-    <!-- Floating Hire Button (Mobile) -->
+    <!-- Floating Hire (Mobile) -->
     <div class="floating-hire">
         <a href="#contact" class="btn-hire" style="padding: 12px 22px; font-size: 13px; border-radius: 50px;">
             <i class="fas fa-rocket me-1"></i> Hire Me
@@ -612,31 +672,23 @@
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.16/lib/typed.umd.js"></script>
 
     <script>
-        // Initialize AOS
         AOS.init({ duration: 900, once: true, offset: 80 });
 
-        // Particles
         particlesJS("particles-js", {
             particles: {
                 number: { value: 90, density: { enable: true, value_area: 900 } },
-                color: { value: ["#00f2ff", "#bc13fe", "#ff00aa"] },
+                color: { value: ["#00f2ff", "#bc13fe", "#ff00aa", "#00ff88"] },
                 shape: { type: "circle" },
                 opacity: { value: 0.4, random: true },
                 size: { value: 2.5, random: true },
                 line_linked: {
-                    enable: true,
-                    distance: 140,
-                    color: "#bc13fe",
-                    opacity: 0.25,
-                    width: 1
+                    enable: true, distance: 140,
+                    color: "#bc13fe", opacity: 0.25, width: 1
                 },
                 move: {
-                    enable: true,
-                    speed: 1.8,
-                    direction: "none",
-                    random: true,
-                    straight: false,
-                    out_mode: "out"
+                    enable: true, speed: 1.8,
+                    direction: "none", random: true,
+                    straight: false, out_mode: "out"
                 }
             },
             interactivity: {
@@ -653,7 +705,6 @@
             retina_detect: true
         });
 
-        // Typed.js
         new Typed('#typed-text', {
             strings: [
                 'Full-Stack Developer',
@@ -662,24 +713,20 @@
                 'Freelance Specialist',
                 'Digital Solution Architect'
             ],
-            typeSpeed: 60,
-            backSpeed: 35,
-            backDelay: 1800,
-            loop: true,
-            showCursor: true,
-            cursorChar: '|'
+            typeSpeed: 60, backSpeed: 35,
+            backDelay: 1800, loop: true,
+            showCursor: true, cursorChar: '|'
         });
 
-        // Projects Data
         const projects = [
-            { t: "Website Development", bn: "সম্পূর্ণ নতুন ওয়েবসাইট তৈরি ও কোডিং।", en: "Modern code-based website creation.", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&q=80" },
-            { t: "Mobile App Build", bn: "অ্যান্ড্রয়েড ও আইওএস অ্যাপ তৈরি।", en: "Professional Android & iOS development.", img: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=500&q=80" },
+            { t: "Website Development", bn: "সম্পূর্ণ নতুন ওয়েবসাইট তৈরি ও কোডিং।", en: "Modern code-based website creation.", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&q=80" },
+            { t: "Mobile App Build", bn: "অ্যান্ড্রয়েড ও আইওএস অ্যাপ তৈরি।", en: "Professional Android & iOS development.", img: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=500&q=80" },
             { t: "UI/UX Design", bn: "আধুনিক ইন্টারফেস ডিজাইন।", en: "Modern, clean user-friendly design.", img: "https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?w=500&q=80" },
-            { t: "E-Commerce Solution", bn: "অনলাইন শপ পূর্ণাঙ্গ ওয়েবসাইট।", en: "Complete online shopping solutions.", img: "https://images.unsplash.com/photo-1557821552-17105176677c?w=500&q=80" },
+            { t: "E-Commerce Solution", bn: "অনলাইন শপ পূর্ণাঙ্গ ওয়েবসাইট।", en: "Complete online shopping solutions.", img: "https://images.unsplash.com/photo-1557821552-17105176677c?w=500&q=80" },
             { t: "Portfolio Website", bn: "ব্যক্তিগত পোর্টফোলিও তৈরি।", en: "Personal showcase portfolios.", img: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=500&q=80" },
-            { t: "LMS / Education", bn: "অনলাইন কোর্স ওয়েবসাইট।", en: "Learning Management Systems.", img: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=500&q=80" },
-            { t: "Software Design", bn: "কাস্টম সফটওয়্যার তৈরি।", en: "Custom inventory software build.", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&q=80" },
-            { t: "API Integration", bn: "থার্ড পার্টি এপিআই গেটওয়ে।", en: "Secure API & payment integration.", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?w=500&q=80" },
+            { t: "LMS / Education", bn: "অনলাইন কোর্স ওয়েবসাইট।", en: "Learning Management Systems.", img: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=500&q=80" },
+            { t: "Software Design", bn: "কাস্টম সফটওয়্যার তৈরি।", en: "Custom inventory software build.", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&q=80" },
+            { t: "API Integration", bn: "থার্ড পার্টি এপিআই গেটওয়ে।", en: "Secure API & payment integration.", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?w=500&q=80" },
             { t: "SEO Optimization", bn: "গুগল র‍্যাঙ্কিং এসইও।", en: "Professional on-page SEO services.", img: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=500&q=80" },
             { t: "Landing Page", bn: "সেলস ল্যান্ডিং পেজ ডিজাইন।", en: "High-converting landing pages.", img: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=500&q=80" },
             { t: "Graphics Branding", bn: "ডিজিটাল ব্র্যান্ডিং ও লোগো।", en: "Professional branding assets.", img: "https://images.unsplash.com/photo-1572044162444-ad60f128bde2?w=500&q=80" },
@@ -690,21 +737,22 @@
         projects.forEach((p, i) => {
             grid.innerHTML += `
                 <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="${(i % 4) * 100}">
-                    <div class="project-card">
-                        <div style="overflow:hidden;">
-                            <img src="\( {p.img}" class="project-img" alt=" \){p.t}" loading="lazy">
-                        </div>
-                        <div class="p-3">
-                            <h6 class="en-text mb-2">${p.t}</h6>
-                            <p class="text-secondary small mb-1">${p.bn}</p>
-                            <p class="text-muted small mb-0" style="font-style:italic;">${p.en}</p>
+                    <div class="project-card neon-card tilt-card">
+                        <div class="tilt-inner">
+                            <div style="overflow:hidden;">
+                                <img src="${p.img}" class="project-img" alt="${p.t}" loading="lazy">
+                            </div>
+                            <div class="p-3">
+                                <h6 class="en-text mb-2 hover-underline">${p.t}</h6>
+                                <p class="text-secondary small mb-1">${p.bn}</p>
+                                <p class="text-muted small mb-0" style="font-style:italic;">${p.en}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             `;
         });
 
-        // Counter Animation
         const counters = document.querySelectorAll('.stat-number');
         const animateCounter = (el) => {
             const target = +el.getAttribute('data-target');
@@ -718,7 +766,6 @@
             requestAnimationFrame(update);
         };
 
-        // Skill Bars
         const skillBars = document.querySelectorAll('.skill-progress');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -737,20 +784,17 @@
         skillBars.forEach(bar => observer.observe(bar));
         counters.forEach(c => observer.observe(c));
 
-        // Scroll Progress
         window.addEventListener('scroll', () => {
             const scrollTop = window.scrollY;
             const docHeight = document.documentElement.scrollHeight - window.innerHeight;
             const progress = (scrollTop / docHeight) * 100;
             document.getElementById('scrollProgress').style.width = progress + '%';
 
-            // Navbar
             const nav = document.getElementById('navbar');
             if (scrollTop > 50) nav.classList.add('scrolled');
             else nav.classList.remove('scrolled');
         });
 
-        // Custom Cursor
         const cursor = document.getElementById('cursor');
         const follower = document.getElementById('cursorFollower');
         document.addEventListener('mousemove', (e) => {
@@ -758,16 +802,51 @@
             follower.style.transform = `translate(${e.clientX - 4}px, ${e.clientY - 4}px)`;
         });
 
-        // Hover effect on links
         document.querySelectorAll('a, .project-card, .stat-box, .contact-box').forEach(el => {
             el.addEventListener('mouseenter', () => {
                 cursor.style.transform += ' scale(1.8)';
                 cursor.style.background = 'rgba(0,242,255,0.15)';
+                cursor.style.borderColor = 'var(--neon-purple)';
             });
             el.addEventListener('mouseleave', () => {
                 cursor.style.background = 'transparent';
+                cursor.style.borderColor = 'var(--neon-blue)';
             });
         });
+
+        document.querySelectorAll('.tilt-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                card.querySelector('.tilt-inner').style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.querySelector('.tilt-inner').style.transform = 'rotateX(0) rotateY(0)';
+            });
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        const skillItems = document.querySelectorAll('.skill-item');
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = `staggerFadeIn 0.6s ease forwards ${index * 0.1}s`;
+                }
+            });
+        }, { threshold: 0.2 });
+        skillItems.forEach(item => skillObserver.observe(item));
     </script>
 </body>
 </html>
