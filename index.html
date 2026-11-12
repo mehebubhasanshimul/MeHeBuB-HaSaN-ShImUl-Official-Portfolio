@@ -29,6 +29,7 @@ body{
   background:var(--bg);
   font-family:Poppins,"Hind Siliguri",sans-serif;
   overflow-x:hidden;
+  perspective:1200px;
 }
 body::before{
   content:"";position:fixed;inset:0;z-index:-3;
@@ -43,6 +44,7 @@ body::after{
     linear-gradient(#ffffff08 1px,transparent 1px),
     linear-gradient(90deg,#ffffff08 1px,transparent 1px);
   background-size:40px 40px;
+  animation:gridMove 20s linear infinite;
 }
 a{color:inherit;text-decoration:none}
 button{font:inherit}
@@ -54,17 +56,18 @@ nav{
   position:sticky;top:0;z-index:100;
   display:flex;justify-content:space-between;align-items:center;
   gap:14px;padding:16px 4%;
-  background:#070816eF;backdrop-filter:blur(18px);
+  background:#070816ef;backdrop-filter:blur(18px);
   border-bottom:1px solid #36efff35;
 }
 .logo{
   font-family:Orbitron,sans-serif;font-weight:800;
   color:var(--cyan);letter-spacing:1px;font-size:.95rem;
+  text-shadow:0 0 12px #36efff55;
 }
 .logo span{color:white}
 .navlinks{display:flex;gap:20px;flex-wrap:wrap}
-.navlinks a{font-size:.83rem;color:#d9def4;transition:.2s}
-.navlinks a:hover{color:var(--cyan)}
+.navlinks a{font-size:.83rem;color:#d9def4;transition:.25s}
+.navlinks a:hover{color:var(--cyan);text-shadow:0 0 10px #36efff}
 
 /* HERO */
 .hero{
@@ -107,53 +110,86 @@ nav{
   display:inline-block;width:4px;height:.82em;
   background:var(--cyan);margin-left:7px;vertical-align:middle;
   animation:blink .8s steps(2) infinite;
+  box-shadow:0 0 12px var(--cyan);
 }
 .hero-description{color:var(--muted);line-height:1.95;max-width:650px}
 .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:9px;
   padding:13px 19px;border-radius:12px;font-weight:700;
-  transition:.25s;border:1px solid #36efff45;
+  transition:.3s;border:1px solid #36efff45;
+  position:relative;overflow:hidden;
 }
+.btn::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(120deg,transparent,#ffffff22,transparent);
+  transform:translateX(-100%);transition:.5s;
+}
+.btn:hover::before{transform:translateX(100%)}
 .btn-primary{
   background:linear-gradient(100deg,var(--cyan),#c2a6ff);
   color:#07101b;box-shadow:0 0 25px #36efff25;
 }
 .btn-outline{background:#ffffff08;color:white}
-.btn:hover{transform:translateY(-4px);box-shadow:0 0 28px #36efff35}
+.btn:hover{transform:translateY(-4px);box-shadow:0 0 35px #36efff45}
 .future-strip{
   margin-top:27px;padding:12px;
   border-left:3px solid var(--cyan);
   background:linear-gradient(90deg,#36efff13,transparent);
   color:#dceaff;font-size:.75rem;letter-spacing:1px;line-height:2;
+  position:relative;
+}
+.future-strip::after{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:var(--cyan);box-shadow:0 0 12px var(--cyan);
+  animation:pulseLine 2s ease-in-out infinite;
 }
 
-/* PROFILE IMAGE */
-.art{position:relative;max-width:390px;width:100%;margin:auto}
+/* PROFILE IMAGE - HOLOGRAM */
+.art{position:relative;max-width:390px;width:100%;margin:auto;transform-style:preserve-3d}
 .portrait-frame{
   padding:9px;border-radius:30px;
   background:linear-gradient(135deg,var(--cyan),var(--purple),var(--pink));
   animation:frameGlow 4s ease-in-out infinite;
-  transform:rotate(2deg);
+  transform:rotateY(-6deg) rotateX(4deg);
+  position:relative;
+  box-shadow:0 0 40px #36efff30, inset 0 0 20px #a970ff20;
+}
+.portrait-frame::before{
+  content:"";position:absolute;inset:-2px;border-radius:32px;
+  background:linear-gradient(135deg,var(--cyan),transparent 40%,var(--pink));
+  opacity:.6;z-index:-1;filter:blur(8px);
+  animation:holoBorder 6s linear infinite;
 }
 .portrait-frame img{
   display:block;width:100%;height:430px;object-fit:cover;
-  border-radius:23px;transform:rotate(-2deg);background:#12152b;
+  border-radius:23px;background:#12152b;
+  position:relative;z-index:1;
+  filter:contrast(1.05) brightness(1.02);
+}
+.holo-scan{
+  position:absolute;inset:9px;border-radius:23px;overflow:hidden;pointer-events:none;z-index:2;
+}
+.holo-scan::after{
+  content:"";position:absolute;left:0;right:0;height:35%;
+  background:linear-gradient(to bottom,transparent,#36efff33,transparent);
+  animation:holoScan 3.5s linear infinite;
 }
 .float-card{
   position:absolute;padding:13px 15px;border:1px solid #36efff55;
   border-radius:13px;background:#090d20ed;backdrop-filter:blur(12px);
-  font-size:.74rem;box-shadow:0 0 25px #0008;
+  font-size:.74rem;box-shadow:0 0 25px #0008,0 0 15px #36efff20;
   animation:float 4s ease-in-out infinite;
+  transform-style:preserve-3d;
 }
-.float-card strong{display:block;color:var(--cyan);font-size:.85rem}
+.float-card strong{display:block;color:var(--cyan);font-size:.85rem;text-shadow:0 0 8px #36efff55}
 .float-one{left:-25px;top:35px}
 .float-two{right:-20px;bottom:28px;animation-delay:1s}
 
 /* SECTION STYLES */
 section{padding:72px 0}
 .section-head{text-align:center;margin-bottom:34px}
-.kicker{color:var(--cyan);font:600 .75rem Orbitron,sans-serif;letter-spacing:2px}
+.kicker{color:var(--cyan);font:600 .75rem Orbitron,sans-serif;letter-spacing:2px;text-shadow:0 0 10px #36efff40}
 h2{font-size:clamp(1.8rem,4vw,3rem);margin:12px 0;font-weight:800}
 .gradient{
   background:linear-gradient(90deg,var(--cyan),var(--purple),var(--pink));
@@ -164,44 +200,64 @@ h2{font-size:clamp(1.8rem,4vw,3rem);margin:12px 0;font-weight:800}
 .card{
   min-width:0;background:var(--panel);
   border:1px solid #aab0ca25;border-radius:19px;overflow:hidden;
-  transition:.3s;backdrop-filter:blur(12px);
+  transition:.4s;backdrop-filter:blur(12px);
+  transform-style:preserve-3d;
+  position:relative;
+}
+.card::before{
+  content:"";position:absolute;inset:0;border-radius:19px;
+  background:linear-gradient(135deg,#36efff15,transparent 50%,#a970ff10);
+  opacity:0;transition:.4s;pointer-events:none;
 }
 .card:hover{
-  transform:translateY(-7px);border-color:#36efff80;
-  box-shadow:0 18px 40px #36efff12;
+  transform:translateY(-10px) rotateX(4deg);
+  border-color:#36efff80;
+  box-shadow:0 20px 45px #36efff18,0 0 30px #36efff15;
 }
-.card-content{padding:22px}
+.card:hover::before{opacity:1}
+.card-content{padding:22px;position:relative;z-index:1}
 .card h3{font-size:1.05rem;margin:9px 0}
 .card p{font-size:.87rem;color:var(--muted);line-height:1.8}
 .service-icon{
   width:50px;height:50px;display:grid;place-items:center;
   border-radius:15px;color:var(--cyan);background:#36efff12;
   border:1px solid #36efff40;font-size:1.3rem;
+  box-shadow:0 0 15px #36efff20;
+  transition:.3s;
 }
+.card:hover .service-icon{box-shadow:0 0 25px #36efff40;transform:scale(1.08)}
 
 /* PROJECTS */
 .filters{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin-bottom:25px}
 .filter{
   background:#ffffff08;border:1px solid #ffffff20;
   border-radius:30px;padding:9px 15px;color:white;cursor:pointer;
-  transition:.2s;
+  transition:.25s;
 }
-.filter.active,.filter:hover{color:#06101b;background:var(--cyan);font-weight:700}
+.filter.active,.filter:hover{color:#06101b;background:var(--cyan);font-weight:700;box-shadow:0 0 18px #36efff50}
 .project-image{height:190px;overflow:hidden;position:relative;background:#12152b}
-.project-image img{width:100%;height:100%;object-fit:cover;transition:.5s}
-.card:hover .project-image img{transform:scale(1.08)}
+.project-image img{width:100%;height:100%;object-fit:cover;transition:.6s}
+.card:hover .project-image img{transform:scale(1.1)}
 .tag{
   position:absolute;top:12px;left:12px;padding:6px 10px;
   border-radius:30px;background:#080b20e8;border:1px solid #ffffff35;
-  font-size:.66rem;z-index:1
+  font-size:.66rem;z-index:1;backdrop-filter:blur(6px);
 }
 
 /* PROCESS */
 .step{
   padding:22px;border:1px solid #ffffff1c;
   background:var(--panel);border-radius:17px;
+  transition:.35s;position:relative;overflow:hidden;
 }
-.step-number{font:800 1.5rem Orbitron,sans-serif;color:var(--cyan)}
+.step::after{
+  content:"";position:absolute;top:0;left:-100%;width:60%;height:100%;
+  background:linear-gradient(90deg,transparent,#36efff18,transparent);
+  transition:.6s;
+}
+.step:hover::after{left:130%}
+.step:hover{border-color:#36efff50;transform:translateY(-6px);box-shadow:0 12px 30px #36efff12}
+.step-number{font:800 1.5rem Orbitron,sans-serif;color:var(--cyan);text-shadow:0 0 12px #36efff40}
 
 /* SOCIAL PROFILE CARDS */
 .social-profile-grid{
@@ -213,16 +269,18 @@ h2{font-size:clamp(1.8rem,4vw,3rem);margin:12px 0;font-weight:800}
   min-width:0;padding:16px;overflow:hidden;
   border:1px solid #ffffff24;border-radius:20px;
   background:rgba(15,20,42,.9);
-  transition:transform .3s,border-color .3s,box-shadow .3s;
+  transition:transform .35s,border-color .35s,box-shadow .35s;
+  transform-style:preserve-3d;
 }
 .profile-card::before{
   content:"";position:absolute;inset:0;opacity:0;
   background:linear-gradient(120deg,#36efff16,transparent);
-  transition:opacity .3s;pointer-events:none;
+  transition:opacity .35s;pointer-events:none;
 }
 .profile-card:hover{
-  transform:translateY(-6px);border-color:var(--social-color);
-  box-shadow:0 0 25px #36efff20;
+  transform:translateY(-8px) rotateY(3deg);
+  border-color:var(--social-color);
+  box-shadow:0 0 30px #36efff25;
 }
 .profile-card:hover::before{opacity:1}
 .profile-card>img,.whatsapp-art{
@@ -230,7 +288,7 @@ h2{font-size:clamp(1.8rem,4vw,3rem);margin:12px 0;font-weight:800}
   object-fit:cover;border-radius:14px;border:1px solid #ffffff28;
 }
 .profile-info{position:relative;min-width:0}
-.profile-info>i{font-size:1.5rem;color:var(--social-color)}
+.profile-info>i{font-size:1.5rem;color:var(--social-color);filter:drop-shadow(0 0 8px var(--social-color))}
 .profile-info h3{margin:7px 0;font-size:1.08rem}
 .profile-info p{
   margin:0 0 12px;color:var(--muted);font-size:.76rem;
@@ -259,35 +317,70 @@ h2{font-size:clamp(1.8rem,4vw,3rem);margin:12px 0;font-weight:800}
   text-align:center;padding:34px 20px;
   border:1px solid #36efff45;border-radius:24px;
   background:linear-gradient(135deg,#36efff0b,#a970ff12);
+  box-shadow:0 0 40px #36efff10;
+  position:relative;overflow:hidden;
 }
-.contact-box .sub{max-width:680px;margin:12px auto}
+.contact-box::before{
+  content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;
+  background:conic-gradient(from 0deg,transparent,#36efff15,transparent 30%);
+  animation:rotateGlow 12s linear infinite;
+  opacity:.4;
+}
+.contact-box .sub{max-width:680px;margin:12px auto;position:relative}
+.contact-box .actions,.contact-box h2,.contact-box .kicker{position:relative}
 footer{
   text-align:center;padding:28px 12px;color:#9ba4c2;
   border-top:1px solid #ffffff15;font-size:.82rem;line-height:1.9;
 }
 footer span{color:var(--cyan)}
-.back-top{color:var(--cyan)}
+.back-top{color:var(--cyan);transition:.25s}
+.back-top:hover{text-shadow:0 0 12px #36efff}
 .reveal{animation:reveal .8s ease both}
+
+/* PARTICLES CANVAS */
+#particles{
+  position:fixed;inset:0;z-index:-1;pointer-events:none;
+  opacity:.55;
+}
 
 /* ANIMATIONS */
 @keyframes scan{to{left:130%}}
 @keyframes blink{50%{opacity:0}}
 @keyframes colorFlow{to{background-position:300% center}}
 @keyframes float{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-10px)}
+  0%,100%{transform:translateY(0) translateZ(0)}
+  50%{transform:translateY(-12px) translateZ(20px)}
 }
 @keyframes frameGlow{
-  0%,100%{box-shadow:0 0 30px #36efff25}
-  50%{box-shadow:0 0 60px #a970ff50}
+  0%,100%{box-shadow:0 0 30px #36efff25,0 0 60px #a970ff20}
+  50%{box-shadow:0 0 55px #a970ff50,0 0 90px #36efff30}
 }
 @keyframes whatsappPulse{
   0%,100%{transform:scale(1)}
   50%{transform:scale(1.08)}
 }
 @keyframes reveal{
-  from{opacity:0;transform:translateY(18px)}
+  from{opacity:0;transform:translateY(22px)}
   to{opacity:1;transform:translateY(0)}
+}
+@keyframes gridMove{
+  0%{background-position:0 0}
+  100%{background-position:40px 40px}
+}
+@keyframes holoScan{
+  0%{top:-40%}
+  100%{top:110%}
+}
+@keyframes holoBorder{
+  0%{filter:hue-rotate(0deg)}
+  100%{filter:hue-rotate(360deg)}
+}
+@keyframes pulseLine{
+  0%,100%{opacity:1;box-shadow:0 0 12px var(--cyan)}
+  50%{opacity:.5;box-shadow:0 0 22px var(--cyan)}
+}
+@keyframes rotateGlow{
+  to{transform:rotate(360deg)}
 }
 
 /* RESPONSIVE */
@@ -295,6 +388,7 @@ footer span{color:var(--cyan)}
   .hero{grid-template-columns:1fr;padding-top:52px;gap:32px}
   .hero h1{font-size:clamp(2.35rem,8.5vw,4.4rem)}
   .art{max-width:330px;margin-top:15px}
+  .portrait-frame{transform:none}
   .portrait-frame img{height:370px}
   .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
   .navlinks{gap:11px}
@@ -329,6 +423,8 @@ footer span{color:var(--cyan)}
 </head>
 
 <body>
+
+<canvas id="particles"></canvas>
 
 <!-- NAVIGATION -->
 <nav>
@@ -386,6 +482,7 @@ footer span{color:var(--cyan)}
         src="https://i.postimg.cc/vH6WRPmp/IMG-20260426-001903.png"
         alt="Mehebub Hasan Shimul"
         onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=700&q=80';">
+      <div class="holo-scan"></div>
     </div>
     <div class="float-card float-one">
       <strong><i class="fa-solid fa-bolt"></i> CREATIVE MODE</strong>
@@ -694,7 +791,6 @@ document.querySelectorAll(".filter").forEach(button => {
     document.querySelectorAll(".filter").forEach(item => {
       item.classList.remove("active");
     });
-
     button.classList.add("active");
     renderProjects(button.dataset.filter);
   });
@@ -703,22 +799,114 @@ document.querySelectorAll(".filter").forEach(button => {
 /* LIVE CLOCK */
 function updateClock() {
   const now = new Date();
-
   document.getElementById("clock").textContent =
     "SYSTEM ONLINE // " +
     now.toLocaleTimeString("en-GB", {hour12:false}) +
     " // DIGITAL FUTURE";
 }
-
 updateClock();
 setInterval(updateClock, 1000);
 
 /* FOOTER YEAR */
-document.getElementById("year").textContent =
-  new Date().getFullYear();
+document.getElementById("year").textContent = new Date().getFullYear();
 
 /* INITIAL PROJECTS */
 renderProjects();
+
+/* ========== 3D HOLOGRAM PARTICLE SYSTEM ========== */
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+let particles = [];
+let w, h;
+
+function resize() {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+}
+window.addEventListener("resize", resize);
+resize();
+
+class Particle {
+  constructor() {
+    this.reset();
+  }
+  reset() {
+    this.x = Math.random() * w;
+    this.y = Math.random() * h;
+    this.size = Math.random() * 1.8 + 0.4;
+    this.speedX = (Math.random() - 0.5) * 0.4;
+    this.speedY = (Math.random() - 0.5) * 0.4;
+    this.alpha = Math.random() * 0.5 + 0.1;
+    this.color = Math.random() > 0.6 ? "#36efff" : Math.random() > 0.5 ? "#a970ff" : "#70ffbd";
+  }
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+    if (this.x < 0 || this.x > w || this.y < 0 || this.y > h) this.reset();
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = this.color;
+    ctx.globalAlpha = this.alpha;
+    ctx.fill();
+  }
+}
+
+function initParticles() {
+  particles = [];
+  const count = Math.min(Math.floor((w * h) / 14000), 90);
+  for (let i = 0; i < count; i++) particles.push(new Particle());
+}
+initParticles();
+window.addEventListener("resize", initParticles);
+
+function animateParticles() {
+  ctx.clearRect(0, 0, w, h);
+  particles.forEach(p => {
+    p.update();
+    p.draw();
+  });
+  // subtle connecting lines
+  ctx.globalAlpha = 0.08;
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 110) {
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.strokeStyle = "#36efff";
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      }
+    }
+  }
+  ctx.globalAlpha = 1;
+  requestAnimationFrame(animateParticles);
+}
+animateParticles();
+
+/* Soft 3D tilt on cards (desktop) */
+if (window.matchMedia("(hover: hover)").matches) {
+  document.querySelectorAll(".card, .profile-card, .step").forEach(card => {
+    card.addEventListener("mousemove", e => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((y - centerY) / centerY) * -6;
+      const rotateY = ((x - centerX) / centerX) * 6;
+      card.style.transform = `perspective(800px) rotateX(\( {rotateX}deg) rotateY( \){rotateY}deg) translateY(-6px)`;
+    });
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = "";
+    });
+  });
+}
 </script>
 
 </body>
